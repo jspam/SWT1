@@ -963,9 +963,311 @@
 
     <item>Aufruf mittels der Methode <verbatim|start()>, darf nur einmal
     aufgerufen werden!
+
+    <item>Zusammenführen (Warten auf Beendigung von Thread <verbatim|t>)
+    mittels <verbatim|t.join()>
+
+    <item>Als <verbatim|volatile> deklarierte Variablen werden nicht im Cache
+    gespeichert und nach jeder Änderung wieder in den Speicher geschrieben.
+
+    <item>Monitore schützen kritische Abschnitte: Versucht eine Aktivität,
+    einen besetzten Monitor zu betreten, wird sie solange blockiert, bis der
+    Monitor wieder freigegeben wird. Dieselbe Aktivität kann einen Monitor
+    mehrmals betreten.
+
+    <item>Synchronisierung: Block mit <verbatim|synchronized(obj)> [Monitor
+    von <verbatim|obj> wird benutzt] oder <verbatim|synchronized>-Methode
+    [Monitor von <verbatim|this> bzw. bei statischen Methoden der Monitor der
+    Klasse wird benutzt] übernimmt das Betreten und Verlassen des Monitors.
+
+    <item>Warten auf einen Monitor mit <verbatim|wait> [bzw.
+    <verbatim|this.wait()> in synchronisierten Methoden] gibt den
+    betreffenden Monitor frei und wartet eine angegebene Zeitspanne oder bis
+    zum Erhalt eines Signals via <verbatim|notifyAll>.
+
+    Aufgrund von <em|spurious wake-ups> muss <verbatim|wait()> immer in einer
+    Schleife mit Wächterbedingung stehen!
+
+    Es muss ausserdem eine <verbatim|InterruptedException> gefangen werden
+    (ausgelöst durch <verbatim|Thread.interrupt()>) <math|\<rightarrow\>>
+    z.B. sauberes Beenden eines Threads.
+
+    <item>Vermeidung von <strong|Deadlocks> (Blockaden): Monitore immer in
+    derselben Reihenfolge anfordern
+
+    <item><verbatim|java.util.concurrent> enthält thread-sichere
+    Implementierungen häufig genutzer Klassen.
   </itemize-minus>
 
-  <section|Testen>
+  <subsubsection|Parallele Entwurfsmuster>
+
+  <\description>
+    <item*|Gebietszerlegung>Teilen des Problems in Teilprobleme, die parallel
+    gelöst werden
+
+    <item*|Master/Worker>Siehe entsprechendes Entwurfsmuster
+
+    <item*|Erzeuger/Verbraucher>(mit Puffer)
+
+    <item*|Fliessband>Eigener Thread pro Fliessbandstufe.
+
+    <item*|Paralleles \RTeile und Herrsche``>Parallele Verarbeitung der
+    Teilprobleme bis zu einer gewissen Grösse, ab da sequentielle Bearbeitung
+    (z.B. paralleles Mergesort)
+  </description>
+
+  <subsubsection|Parallele Algorithmen>
+
+  <\description>
+    <item*|Matrix-Vektor-Multiplikation>Zeilenweise Aufteilung der Matrix
+
+    ijk-Algorithmus: Klassischer Algorithmus zur Multiplikation zweier
+    Matrizen
+
+    ijk-Algorithmus: Cache-freundliche Version
+
+    <item*|Numerische Integration>Aufteilen des Integrationsbereich in
+    Teilbereiche, Aufsummieren des Ergebnisses.
+  </description>
+
+  <subsubsection|Bewertung paralleler Algorithmen>
+
+  <\description>
+    <item*|Speedup/Beschleunigung bei Verwendung von <math|p>
+    Prozessoren>Vergleich der parallelisierten Ausführung mit der besten
+    sequenziellen Ausführung:
+
+    <\equation*>
+      S<around*|(|p|)>=<frac|T<around*|(|1|)>|T<around*|(|p|)>>
+    </equation*>
+
+    Idealfall: <math|S<around*|(|p|)>=p>
+
+    <item*|Effizienz>Anteil an der Ausführungszeit, die jeder Prozessor mit
+    nützlicher Arbeit verbringt
+
+    <\equation*>
+      E<around*|(|p|)>=<frac|S<around*|(|p|)>|p>
+    </equation*>
+
+    Idealfall: <math|E<around*|(|p|)>=1>
+
+    <item*|Laufzeit>Wenn <math|\<sigma\>> die Ausführungszeit des
+    sequentiellen, nicht parallelisierbaren Teils und <math|\<pi\>> die Zeit
+    für die sequentielle Ausführung des parallelisierbaren Teils eines
+    Algorithmus ist:
+
+    <\equation*>
+      T<around*|(|p|)>=\<sigma\>+<frac|\<pi\>|p>
+    </equation*>
+
+    Gesamtlaufzeit des Algorithmus auf <math|p> Prozessoren/Kernen
+
+    <item*|Amdahls Gesetz>Wenn <math|f=<frac|\<sigma\>|\<sigma\>+\<pi\>>> der
+    Anteil des sequentiellen, nicht parallelisierbaren Teils am Algorithmus
+    ist, dann gilt für den Speedup:
+
+    <\equation*>
+      S<around*|(|p|)>\<leq\><frac|1|f>
+    </equation*>
+  </description>
+
+  <subsection|Programmierrichtlinien>
+
+  <\itemize-minus>
+    <item>Erleichtern <em|Lesbarkeit> durch Konsistenz
+
+    <item>Beschleunigen <em|Einarbeitung> und Wiedereinarbeitung
+
+    <item>Sparen <em|Zeit> bei Fehlerfindung, Erweiterung und Pflege
+  </itemize-minus>
+
+  <subsection|Selbstkontrolliertes Programmieren>
+
+  <image|skprog.png|50%|50%||>
+
+  Fehlerlogbuch mit Fehlern, deren Suche lange gedauert hat, die hohe Kosten
+  verursacht haben oder lange unentdeckt geblieben sind.
+
+  <em|Daten:> Laufende Nummer, Datum, Phase, Kurzbeschreibung, Ursache
+
+  <section|Testphase>
+
+  Zu unterscheiden:
+
+  <\description>
+    <item*|Testende Verfahren><math|\<rightarrow\> >Aufdecken von Fehlern
+
+    <item*|Verifizierende Verfahren> <math|\<rightarrow\>> Korrektheitsbeweis
+
+    <item*|Analysierende Verfahren><math|\<rightarrow\>> Bestimmung der
+    Eigenschaften einer Systemkomponente
+  </description>
+
+  Arten von Fehlern (errors):
+
+  <\description>
+    <item*|Versagen/Ausfall (failure, fault)>Abweichung des Verhaltens von
+    der Spezifikation
+
+    <item*|Defekt (defect)>Mangel in einem Softwareprodukt, der zu einem
+    Versagen führen kann
+
+    <item*|Irrtum (mistake)>Menschliche Aktion, die einen Defekt verursacht.
+  </description>
+
+  Fehlerklassen:
+
+  <\description>
+    <item*|Anforderungsfehler (Defekt im Pflichtenheft)>Inkorrekte Angaben,
+    unvollständige Angaben über funktionale Anforderungen, Inkonsistenz,
+    Undurchführbarkeit
+
+    <item*|Entwurfsfehler (Defekt in der Spezifikation)>Unvollständige oder
+    fehlerhafte Umsetzung der Anforderung, Inkonsistenz in der Spezifikation;
+    Inkonsistenz zwischen Anforderung, Spezifikation und Entwurf
+
+    <item*|Implementierungsfehler (Defekt im Programm)>Fehlerhafte Umsetzung
+    der Spezifikation.
+  </description>
+
+  Glossar
+
+  <\description>
+    <item*|Test (Softwaretest)>Führt eine oder mehrere Komponenten
+    <strong|(Testling, Prüfling, Testobjekt)> unter bekannten Bedingungen aus
+    und überprüft ihr Verhalten.
+
+    <item*|Testfall>Satz von Daten für die Ausführung eines Teils oder eines
+    Testlings.
+
+    <item*|Testtreiber/Testrahmen>Steuert die Ausführung der Testlinge und
+    versorgt sie mit Testfällen.
+
+    <item*|Testphasen>Komponententest, Integrationstest, Systemtest,
+    Abnahmetest
+
+    <image|testphasen.png|50%|||>
+
+    <item*|Dynamisches Testverfahren (Testen)>Ausführen des zu testenden
+    Programms mit bestimmten Testfällen
+
+    <em|Beispiel:> Kontroll- und datenflussorientierte Tests, funktionale
+    Tests (black box testing), Leistungstests
+
+    <item*|Statische Testverfahren (Prüfen)>Analyse des Quellcodes ohne
+    Ausführen des Programms
+
+    <em|Beispiel:> Manuelle Prüfmethoden (Review), Prüfprogramme (statische
+    Analyse, etwa Checkstyle)
+
+    <item*|White-Box-Testen>Bestimmen der Testfälle mit Kenntnis von
+    Kontroll- und Datenfluss.
+
+    <item*|Black-Box-Testen>Bestimmen der Testfälle ohne Kenntnis von
+    Kontroll- und Datenfluss, nur aus der Spezifikation heraus.
+  </description>
+
+  <strong|Testhelfer> ersetzen noch nicht implementierte Klassen:
+
+  <\description>
+    <item*|Stummel (stub)>Nicht oder nur rudimentär implementiert, dient als
+    Platzhalter für Funktionalität.
+
+    <item*|Attrappe (dummy)>Simuliert die Implementierung zu Testzwecken.
+
+    <item*|Nachahmung (mock)>Attrape mit zusätzlicher Funktionalität, etwa
+    Reaktion auf bestimmte Eingaben oder Verhaltensüberprüfungen.
+  </description>
+
+  Stummel und Attrappen werden durch echte Implementierungen ersetzt,
+  Nachahmungen sind auch für zukünftiges Testen nützlich.
+
+  <subsection|Kontrollflussorientierte Testverfahren>
+
+  Vollständigkeitskriterien werden anhand des <strong|Kontrollflussgraphen>
+  definiert
+
+  <\description>
+    <item*|Anweisungsüberdeckung>Jeder Grundblock des Programms wird
+    ausgeführt.
+
+    Metrik: <math|C<rsub|Anweisung>=C<rsub|0>=<frac|Anzahl durchlaufener
+    Anweisungen|Anzahl aller Anweisungen>>
+
+    <item*|Zweigüberdeckung>Alle Zweige (Kanten) im Kontrollflussgraphen
+    werden traversiert.
+
+    Metrik: <math|C<rsub|Zweig>=C<rsub|1>=<frac|Anzahl durchlaufener
+    Zweige|Anzahl aller Zweige>>
+
+    <item*|Pfadüberdeckung>Alle unterschiedlichen Pfade werden ausgeführt --
+    kann nicht immer anwendbar sein, ist nicht praktikabel
+
+    <item*|Einfache Bedingungsüberdeckung>Jede atomare Bedingung wird einmal
+    mit <verbatim|wahr> und einmal mit <verbatim|falsch> belegt. Nicht
+    ausreichendes Testkriterium!
+
+    <item*|Mehrfache Bedingungsüberdeckung>Die atomaren Bedingungen werden
+    mit allen möglichen Kombinationen der Wahrheitswerte belegt. [Aufwendig
+    und unpraktikabel]
+
+    <item*|Minimal-mehrfache Bedingungsüberdeckung>Jede Bedingung (ob atomar
+    oder zusammengesetzt) muss einmal zu <verbatim|wahr> und einmal zu
+    <verbatim|falsch> evaluieren.
+  </description>
+
+  <image|testverfahren.png|40%|40%||>
+
+  <strong|Behandlung von Schleifen:>
+
+  <\itemize-minus>
+    <item>Ein Satz Testfälle, die den Schleifenrumpf einmal queren
+
+    <item>Ein Satz Testfälle, die den Schleifenrumpf mindestens zweimal
+    queren
+
+    <item>Innerhalb der Schleife: Zweigüberdeckung
+  </itemize-minus>
+
+  <subsection|Funktionale Testverfahren>
+
+  <em|Ziel:> Testen der Funktionalität, die in der Spezifikation festgelegt
+  ist.
+
+  Testfallbestimmung:
+
+  <\description>
+    <item*|Funktionale Äquivalenzklassenbildung>Zerlegen des Wertebereichs
+    der Eingabeparameter und des Definitionsbereichs der Ausgabeparameter in
+    Äquivalenzklassen.
+
+    Testen mit je einem Repräsentanten aus jeder Äquivalenzklasse.
+
+    <item*|Grenzwertanalyse>Wie ÄK-Bildung, aber es werden Elemente <em|auf
+    und um den Rand> der Äquivalenzklasse als Testfälle genommen.
+
+    <item*|Zufallsanalyse>Zufällige Testfälle, sinnvoll als Ergänzung zu
+    anderen Verfahren oder wenn die Korrektheitsprüfung automatisch erfolgen
+    kann (z.B. Sortierverfahren)
+
+    <item*|Test von Zustandsautomaten>Alle Übergänge müssen mindestens einmal
+    durchlaufen worden sein.
+  </description>
+
+  <subsection|Leitungstests>
+
+  <\description>
+    <item*|Lasttest>Testen auf Einhalten der Spezifikation <em|im erlaubten
+    Grenzbereich.>
+
+    <item*|Stresstest>Testen des Verhaltens beim <em|Überschreiten der
+    definierten Grenzen.>
+  </description>
+
+  <subsection|Manuelle Prüfmethoden>
+
+  \;
 </body>
 
 <\initial>
@@ -989,16 +1291,25 @@
     <associate|auto-19|<tuple|5.4|9>>
     <associate|auto-2|<tuple|2|1>>
     <associate|auto-20|<tuple|5.4.1|9>>
-    <associate|auto-21|<tuple|5.4.2|11>>
-    <associate|auto-22|<tuple|5.4.3|13>>
-    <associate|auto-23|<tuple|5.4.4|15>>
-    <associate|auto-24|<tuple|5.4.5|15>>
-    <associate|auto-25|<tuple|6|?>>
-    <associate|auto-26|<tuple|6.1|?>>
-    <associate|auto-27|<tuple|6.2|?>>
-    <associate|auto-28|<tuple|6.2.1|?>>
-    <associate|auto-29|<tuple|7|?>>
+    <associate|auto-21|<tuple|5.4.2|12>>
+    <associate|auto-22|<tuple|5.4.3|14>>
+    <associate|auto-23|<tuple|5.4.4|16>>
+    <associate|auto-24|<tuple|5.4.5|17>>
+    <associate|auto-25|<tuple|6|18>>
+    <associate|auto-26|<tuple|6.1|18>>
+    <associate|auto-27|<tuple|6.2|19>>
+    <associate|auto-28|<tuple|6.2.1|19>>
+    <associate|auto-29|<tuple|6.2.2|20>>
     <associate|auto-3|<tuple|3|2>>
+    <associate|auto-30|<tuple|6.2.3|20>>
+    <associate|auto-31|<tuple|6.2.4|20>>
+    <associate|auto-32|<tuple|6.3|21>>
+    <associate|auto-33|<tuple|6.4|21>>
+    <associate|auto-34|<tuple|7|21>>
+    <associate|auto-35|<tuple|7.1|23>>
+    <associate|auto-36|<tuple|7.2|?>>
+    <associate|auto-37|<tuple|7.3|?>>
+    <associate|auto-38|<tuple|7.4|?>>
     <associate|auto-4|<tuple|3.1|3>>
     <associate|auto-5|<tuple|3.2|3>>
     <associate|auto-6|<tuple|4|3>>
@@ -1110,9 +1421,45 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-25><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Testen>
+      <with|par-left|<quote|1.5fn>|Abbildung von UML in Code
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-26><vspace|0.5fn>
+      <no-break><pageref|auto-26>>
+
+      <with|par-left|<quote|1.5fn>|Parallelität
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-27>>
+
+      <with|par-left|<quote|3fn>|Parallelität in Java
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28>>
+
+      <with|par-left|<quote|3fn>|Parallele Entwurfsmuster
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-29>>
+
+      <with|par-left|<quote|3fn>|Parallele Algorithmen
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-30>>
+
+      <with|par-left|<quote|3fn>|Bewertung paralleler Algorithmen
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-31>>
+
+      <with|par-left|<quote|1.5fn>|Programmierrichtlinien
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-32>>
+
+      <with|par-left|<quote|1.5fn>|Selbstkontrolliertes Programmieren
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-33>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Testphase>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-34><vspace|0.5fn>
+
+      <with|par-left|<quote|1.5fn>|Kontrollflussorientierte Testverfahren
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-35>>
     </associate>
   </collection>
 </auxiliary>
