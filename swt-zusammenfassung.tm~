@@ -931,8 +931,9 @@
 
     <image|assoz3.png|447px|248px||>
 
-    Wichtig bei Änderungen: ACID-Prinzip (Atomicity, Consistency, Isolation,
-    Durability)
+    Wichtig bei Änderungen: ACID-Prinzip (Atomicity [\Rganz oder gar
+    nicht``], Consistency [am Ende steht immer ein konsistenter Zustand],
+    Isolation [keine Beeinflussung durch ander, Durability)
 
     <item*|Zustandsautomaten>Entweder <em|implizite Speicherung> (Berechnung
     des Zustands eines Exemplars aus seinen Attributwerten) mit impliziter
@@ -1262,12 +1263,89 @@
     Grenzbereich.>
 
     <item*|Stresstest>Testen des Verhaltens beim <em|Überschreiten der
-    definierten Grenzen.>
+    definierten Grenzen> und Verhalten nach Rückgang der Überlast.
   </description>
 
   <subsection|Manuelle Prüfmethoden>
 
-  \;
+  <\description>
+    <item*|Durchsicht/Walkthrough>Entwickler führt Kollegen durch seinen
+    Code/Entwurf; Kollegen stellen Fragen und machen Anmerkungen
+
+    <item*|Überprüfung/Review>Formal zwischen Durchsicht und Inspektion,
+    Überprüfung durch einen \Rexternen`` Gutachter.
+
+    <item*|Inspektion>Überprüfung anhand von Prüflisten oder Lesetechniken.
+    Bis zu 90% aller entdeckten Defekte werden in Inspektionen gefunden; nur
+    1/10--1/30 der Kosten gegenüber Testen identifizierter Fehler, ROI oft
+    weit über 500%
+  </description>
+
+  <subsubsection|Software-Inspektion>
+
+  Mehrere Inspektoren [Vielaugenprinzip, Abstand, Erfahrung] untersuchen
+  unabhängig dasselbe Softwaredokument, gefundene Defekte werden
+  aufgeschrieben.
+
+  <em|Ziel:> Probleme identifizieren (nicht lösen)
+
+  Phasen:
+
+  <\description>
+    <item*|1. Vorbereitung>Teilnehmer/Rollen festlegen, Dokumente
+    vorbereiten, Ablauf planen
+
+    <item*|2. Individuelle Fehlersuche>Jeder Inspektor prüft das Dokument
+    (ca. 1 Seite/h), insgesamt maximal 1--4 Seiten, Aufschreiben der
+    Problempunkte
+
+    <item*|3. Gruppensitzung (2 h)>Problempunkte sammeln und einzeln
+    besprechen, Verbesserungsvorschläge sammeln
+
+    <item*|4. Nachbereitung>Problempunkte werden an Editor des Dokuments
+    weitergeleitet, der klassifiziert die Defekte und leitet Änderungen ein.
+
+    <item*|5. Prozessverbesserung>
+  </description>
+
+  Rollen:
+
+  <\description>
+    <item*|Inspektionsleiter>Leitet alle Phasen der Inspektion
+
+    <item*|Moderator>Leitet die Gruppensitzung (meist der Inspektionsleiter)
+
+    <item*|Inspektoren>Prüfen das Dokument
+
+    <item*|Schriftführer>Protokolliert Defekte in der Gruppensitzung
+
+    <item*|Editor>Klassifiziert und behebt Defekte (meist der Autor)
+
+    <item*|Autor>Hat das Dokument verfasst
+  </description>
+
+  Lesetechniken:
+
+  <\description>
+    <item*|Ad-hoc>
+
+    <item*|Prüflisten>(Abhak-)Listen mit Fragen zum Dokument
+
+    <item*|Szenarien>Anleitung zum Prüfen des Dokuments aus einer bestimmten
+    Perspektive [z.B. Wartung, Code-Analyst]; Satz von Fragen (i.A.
+    effektiver als Prüflisten)
+  </description>
+
+  <subsection|Integrationstests>
+
+  <em|Voraussetzung:> Komponenten bereits einzeln überprüft.
+
+  <em|Ziel:> Zusammenspiel der Komponenten testen.
+
+  Schrittweise Integration einer Komponente in die bereits geprüfte
+  Komponentenmenge.
+
+  Folien S. 125--137
 </body>
 
 <\initial>
@@ -1310,7 +1388,9 @@
     <associate|auto-36|<tuple|7.2|?>>
     <associate|auto-37|<tuple|7.3|?>>
     <associate|auto-38|<tuple|7.4|?>>
+    <associate|auto-39|<tuple|7.4.1|?>>
     <associate|auto-4|<tuple|3.1|3>>
+    <associate|auto-40|<tuple|7.5|?>>
     <associate|auto-5|<tuple|3.2|3>>
     <associate|auto-6|<tuple|4|3>>
     <associate|auto-7|<tuple|4.1|3>>
@@ -1460,6 +1540,18 @@
       <with|par-left|<quote|1.5fn>|Kontrollflussorientierte Testverfahren
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-35>>
+
+      <with|par-left|<quote|1.5fn>|Funktionale Testverfahren
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-36>>
+
+      <with|par-left|<quote|1.5fn>|Leitungstests
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-37>>
+
+      <with|par-left|<quote|1.5fn>|Manuelle Prüfmethoden
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-38>>
     </associate>
   </collection>
 </auxiliary>
