@@ -423,7 +423,7 @@
     Programmelemente, Ein-/Ausgabeformate, Methodensignaturen, Beschreibung
     des Effekts der Unterprogramme, Fehlerbehandlung
 
-    <item*|I1: Benutzrelation>Beschreibt, wie Module und Subsysteme einander
+    <item*|I1: Benutztrelation>Beschreibt, wie Module und Subsysteme einander
     benutzen. Sollte ein azyklischer gerichteter Graph sein
     <math|\<rightarrow\>> Aufbau und Testen inkrementell
 
@@ -1026,7 +1026,7 @@
     ijk-Algorithmus: Klassischer Algorithmus zur Multiplikation zweier
     Matrizen
 
-    ijk-Algorithmus: Cache-freundliche Version
+    ikj-Algorithmus: Cache-freundliche Version
 
     <item*|Numerische Integration>Aufteilen des Integrationsbereich in
     Teilbereiche, Aufsummieren des Ergebnisses.
@@ -1347,6 +1347,71 @@
   Komponentenmenge.
 
   Folien S. 125--137
+
+  <section|Prozessmodelle>
+
+  <\description>
+    <item*|Programmieren durch Probieren>(Code&Fix, Trial&Error) Erst Code
+    schreiben, dann Anforderungen etc. überlegen und Programm anpassen
+
+    Fehlende Entwurfsphase <math|\<rightarrow\>> schlecht strukturierter
+    Code, kostspielige Wartung, keine Dokumentation, keine Teamarbeit
+
+    <item*|Wasserfallmodell>Siehe oben, jede Aktivität wird vollständig
+    (streng sequentiell) durchgeführt <math|\<rightarrow\>> keine
+    Rückkopplung, wenig Parallelisierung
+
+    <item*|V-Modell XT>Festlegung von Aktivitäten, Produkten [Ergebnis von
+    Aktivitäten] und Verantwortlichkeiten
+
+    <em|4 Submodelle:> Projektmanagement, Qualitätssicherung,
+    Konfigurationsmanagement, Systemerstellung; jeweils gegliedert in
+    <em|Vorgehensbausteine.>
+
+    <em|\RHandelsübliches`` V-Modell:>\ 
+
+    <image|v-modell.png|503px|215px||>
+
+    <item*|Prototypenmodell>Kann Arbeitsmoral und Vertrauen zwischen Anbieter
+    und Kunden stärken. Ganz wichtig: <strong|Prototyp wird weggeworfen!>
+    Nach Klärung aller wichtigen Fragen und Wegwurf des Prototyps: Vorgehen
+    nach anderem Modell
+
+    <item*|Iteratives Modell>Funktionalität wird Schritt für Schritt erstellt
+
+    <\description>
+      <item*|Evolutionär>Nur der Teil, der als nächstes hinzugefügt wird,
+      wird geplant und analysiert (<math|x>-faches Wasserfallmodell)
+      <math|\<rightarrow\>> Problem im Zusammenspiel zwischen den Teilen
+
+      <item*|Inkrementell>Alles wird geplant und analysiert [was aber
+      eigentlich vermieden werden soll] und <math|n>-mal über
+      Entwurfs-/Implementierungs-/Testphase iteriert
+    </description>
+
+    <math|\<rightarrow\>> Mischformen
+
+    <item*|Synchronisiere und Stabilisiere>(\RMicrosoft-Modell``)
+    Organisation in kleinen Teams mit Freiheit für eigene Ideen/Entwürfe:
+
+    Regelmässige <em|Synchronisation> (nächtlich), regelmässige
+    <em|Stabilisierung> (3 Monate)
+
+    Planungsphase [<em|vision statement>, Spezifikation, Zeitplan],
+    Entwicklungsphase [wichtigste Funktionen zuerst, Testen parallel zur
+    Entwicklung, 3x Stabilisierung], Stabilisierungsphase [Beta-Tests,
+    Codestabilisierung]
+
+    <item*|Agile Methoden (speziell Extreme Programming)>Wenig Vorausplanung,
+    inkrementelle Planung, wenig unnötige Dokumente, flexible Reaktion auf
+    Änderungen, Einbeziehung des Kunden in die Entwicklung
+
+    <em|Methoden:> Paarprogrammierung, sehr häufiges und automatisches Testen
+    [automatische Komponententests, durch Kunden spezifizierter
+    Akzeptanztest], testgetriebene Entwicklung [jede Verhaltensänderung am
+    Quelltext wird durch automatisierten Test modelliert, Testcode vor
+    Anwendungsode]
+  </description>
 </body>
 
 <\initial>
@@ -1392,6 +1457,7 @@
     <associate|auto-39|<tuple|7.4.1|?>>
     <associate|auto-4|<tuple|3.1|3>>
     <associate|auto-40|<tuple|7.5|?>>
+    <associate|auto-41|<tuple|8|?>>
     <associate|auto-5|<tuple|3.2|3>>
     <associate|auto-6|<tuple|4|3>>
     <associate|auto-7|<tuple|4.1|3>>
@@ -1553,6 +1619,14 @@
       <with|par-left|<quote|1.5fn>|Manuelle Prüfmethoden
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-38>>
+
+      <with|par-left|<quote|3fn>|Software-Inspektion
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-39>>
+
+      <with|par-left|<quote|1.5fn>|Integrationstests
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-40>>
     </associate>
   </collection>
 </auxiliary>
