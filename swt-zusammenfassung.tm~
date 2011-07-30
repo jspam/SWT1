@@ -68,12 +68,21 @@
     Komplexität, schneller und leichter zu verteilen als physikalische
     Produkte, schwer zu \Rvermessen``.
 
-    <item*|Funktionale Attribute>Spezifizieren die Funktion der Software.
+    <item*|Anforderungen>
 
-    <item*|Nichtfunktionale Attribute/Qualitätsattribute>Spezifizieren,
-    <em|wie gut> die Software ihre Funktion erfüllt
-    (Zuverlässigkeit/Robustheit/Verfügbarkeit, Geschwindigkeit,
-    Benutzerfreundlichkeit, Sicherheit, Änderbarkeit, Dokumentationsgrad)
+    <\description>
+      <item*|Funktionale Attribute>Spezifizieren die Funktion der Software.
+
+      <item*|Nichtfunktionale Attribute/Qualitätsattribute>Spezifizieren,
+      <em|wie gut> die Software ihre Funktion erfüllt
+      (Zuverlässigkeit/Robustheit/Verfügbarkeit, Geschwindigkeit,
+      Benutzerfreundlichkeit, Sicherheit, Änderbarkeit, Dokumentationsgrad)
+
+      <item*|Einschränkungen/externe Eigenschaften>Interoperabilität,
+      Standards/Normen, gesetzliche Vorschriften, ethische Anforderungen,
+      Implementierung [Sprache etc.], Schnittstellen, Einsatzumgebung,
+      Lieferumfang, Rechtliches [Lizenzen, Zertifikate, Datenschutz]
+    </description>
 
     <item*|Anforderungen an marktreife Software>Funktionstreue \|
     Qualitätstreue \| Termintreue \| Kostentreue
@@ -147,14 +156,26 @@
     </description>
   </description>
 
-  Anforderungen: Funktionale und nichtfunktionale Anforderungen (siehe oben);
-  <strong|Einschränkungen:> bezüglich Implementierung [Sprache etc.],
-  Schnittstellen, Einsatzumgebung, Lieferumfang, Rechtliches [Lizenzen,
-  Zertifikate, Datenschutz]
+  Anforderungen müssen sein:\ 
 
-  Anforderungen: <em|korrekt, vollständig,> untereinander <em|konsistent,
-  eindeutig, realisierbar, verfolgbar> [jeder Systemfunktion müssen die
-  dadurch erfüllten Anforderungen zuzuordnen sein].
+  <\itemize-minus>
+    <item><em|korrekt> [korrekte Wiedergabe der Kundensicht]
+
+    <item><em|vollständig> [alle Situationen, in denen das System benutzt
+    werden kann, sind beschrieben; einschliesslich Fehler und Fehlbedienung]
+
+    <item><em|untereinander konsistent> [kein Widerspruch
+    funktionaler/nichtfunktionaler Anforderungen untereinander]
+
+    <item><em|realisierbar>
+
+    <item><em|verfolgbar> [jeder Systemfunktion müssen die dadurch erfüllten
+    Anforderungen zuzuordnen sein].
+  </itemize-minus>
+
+  <em|Probleme> bei der Anforderungserhebung: (Bereichs-)Wissen ist selten
+  explizit festgehalten, stillschweigendes Wissen, Verzerrung (absichtlich
+  oder unabsichtlich)
 
   <subsection|Lastenheft>
 
@@ -167,7 +188,7 @@
 
     <item>Produktdaten [z.B. zu speichernde Daten]
 
-    <item>Nichtfunktionale Anforderungen
+    <item>Nichtfunktionale Anforderungen (Qualitätsanforderungen
 
     <item>Systemmodelle
 
@@ -313,6 +334,16 @@
 
   <subsection|UML>
 
+  <\description>
+    <item*|Funktionales Modell>Beschreibt das System aus der Sicht des
+    Benutzers (Anwendungsfalldiagramm)
+
+    <item*|Statisches Modell>Klassendiagramm
+
+    <item*|Dynamisches Modell>Interaktionsdiagramme, Zustandsdiagramme,
+    Aktivitätsdiagramme
+  </description>
+
   <subsection|Objektmodellierung>
 
   Vorgehensweise bei der Objektmodellierung:
@@ -350,6 +381,10 @@
 
     Aggregationen: Rangordnung/semantischer Zusammenhang (\Rbesteht aus``,
     \Rist Teil von``)
+
+    <em|Vorteil> von Assoziationen gegenüber einfachen Referenzen (z.B.
+    Instanzvariablen): <strong|Transaktionalität/ACID> (muss in Java manuell
+    umgesetzt werden)
 
     <item*|3. Finden von Attributen>Attribute müssen problemrelevant sein und
     an der Benutzeroberfläche zu sehen sein [sonst Implementierungsdetails]
@@ -423,7 +458,7 @@
     Programmelemente, Ein-/Ausgabeformate, Methodensignaturen, Beschreibung
     des Effekts der Unterprogramme, Fehlerbehandlung
 
-    <item*|I1: Benutzrelation>Beschreibt, wie Module und Subsysteme einander
+    <item*|I1: Benutztrelation>Beschreibt, wie Module und Subsysteme einander
     benutzen. Sollte ein azyklischer gerichteter Graph sein
     <math|\<rightarrow\>> Aufbau und Testen inkrementell
 
@@ -477,6 +512,10 @@
   Benutztrelation kann Halb- oder Totalordnung sein. Zyklenfreie
   Benutztrelation heisst <strong|Benutzthierarchie>. [Bei Rückrufen/Callbacks
   von <verbatim|B> nach <verbatim|A> ist die Hierarchie trotzdem zyklenfrei]
+
+  <em|Nachteil> einer nicht zyklenfreien Benutztrelation: <strong|\RNothing
+  works until everything works``> -- Implementierung und Testen der Module
+  nicht nacheinander möglich.
 
   <subsection|Objektorientierter Entwurf>
 
@@ -569,6 +608,9 @@
     <item*|Model/View/Controller>Trennung von Daten [Modell] und deren
     Darstellung [View/Sicht]; Interaktion zwischen Sicht und Modell durch
     Controller
+
+    Kombination der Entwurfsmuster <em|Beobachter, Kompositum> und
+    <em|Strategie>
 
     <em|Unterschied zur 3-Schichten-Architektur:> diese ist hierarchisch, MVC
     nicht (\RDreiecksbeziehung`` Modell <math|\<leftrightarrow\>> Steuerung
@@ -692,6 +734,12 @@
     hinzu, Alternative zur Vererbung. [Dekorierer vs. Stellvertreter siehe S.
     66]
 
+    Ziel: Transparente Entkopplung einer bestimmten <em|Instanz> ggü. dem
+    Rest des Programms
+
+    Mitwirkende: <verbatim|Subjekt (Komponente)>, <verbatim|Dekorierer>,
+    <verbatim|Konkrete Komponente>
+
     <image|dekorierer.png|40%|40%||>
 
     <item*|Vermittler>Definiert ein Objekt, welches das Zusammenspiel
@@ -717,6 +765,10 @@
     <item*|Abstrakte Fabrik>Schnittstelle zum Erzeugen einer <em|Familie
     verwandter Objekte,> ohne konkrete Klassen zu benennen.
 
+    <em|Mitwirkende:> <verbatim|AbstrakteFabrik>,
+    <verbatim|KonkreteFabrik>en, <verbatim|Produkte>,
+    <verbatim|KonkreteProdukte>
+
     <em|Anwendbarkeit:> Wenn eine Familie von aufeinander abgestimmten
     Objekten verwendet werden muss.
 
@@ -724,6 +776,11 @@
 
     <item*|Besucher>Kapselt eine <em|Operation> auf Elementen einer Struktur
     als ein <em|Objekt.>
+
+    Mitwirkende: <verbatim|Element>, <verbatim|KonkreteElemente>
+    (implementieren eine \RnimmEntgegen``-Methode für den allgemeinen
+    Besucher), <verbatim|Besucher> (enthält eine \RBesuche``-Methode für
+    jedes konkrete Element!), <verbatim|KonkreteBesucher>
 
     <em|Zweck:> Definition einer neuen Operation auf Klassen, ohne diese
     Klassen zu verändern.
@@ -733,6 +790,10 @@
     <item*|Fabrikmethode>Definiert eine Klassenschnittstelle mit Operationen
     zum Erzeugen eines Objekts, aber lässt <em|Unterklassen entscheiden,> von
     <em|welcher Klasse> das zu erzeugende Objekt ist.
+
+    <em|Mitwirkende:> <verbatim|Erzeuger> (mit abstrakter Fabrikmethode),
+    <verbatim|KonkreterErzeuger> (der die Fabrikmethode implementiert),
+    <verbatim|Produkt>, <verbatim|KonkretesProdukt>
 
     <em|Anwendung:> Klasse kennt Objekte, die sie erzeugt, nicht im Voraus;
     Delegation an Hilfs-Unterklassen.
@@ -745,6 +806,9 @@
     <item*|Kompositum>Fügt Objekte zu <em|Baumstrukturen> zusammen, um
     Hierarchien zu repräsentieren. Einheitliche Behandlung von Objekten wie
     Aggregaten.
+
+    <em|Mitwirkende:> <verbatim|Komponente<strong|>> (gemeinsame, abstrakte
+    Oberklasse), <verbatim|Kompositum>, <verbatim|Blatt>
 
     <em|Beispiel:> <verbatim|Component>-Klasse in Java
 
@@ -768,6 +832,10 @@
 
     <item*|Strategie>Definiert eine <em|Familie von Algorithmen,> kapselt sie
     und macht sie austauschbar.
+
+    <em|Mitwirkende:> <verbatim|Kontext> (über <em|Aggregation> mit Strategie
+    verknüpft), <verbatim|Strategie> (abstrakt),
+    <verbatim|KonkreteStrategie>n
 
     <em|Zweck:> Variation des Algorithmus unabhängig vom nutzenden Klienten.
 
@@ -797,6 +865,9 @@
 
     <em|Äusserer/extrinsischer Zustand:> für jedes Exemplar unterschiedlich,
     wird in externer Datenstruktur gespeichert.
+
+    <em|Mitwirkende:> <verbatim|FliegengewichtFabrik>,
+    <verbatim|Fliegengewicht> (abstrakt), <verbatim|KonkreteFliegengewicht>e
 
     <image|fliegengewicht.png|40%|40%||>
 
@@ -839,8 +910,8 @@
     <item*|Befehl (command)>Kapselt einen Befehl als Objekt.
 
     <em|Möglichkeiten:> Warteschlange von Operationen, Logbuch,
-    Rückgängigmachen, Makrobefehle [siehe Kompositum], Parametrisierung einer
-    Operation.
+    Rückgängigmachen, Makrobefehle [Befehl + Kompositum], Parametrisierung
+    einer Operation.
 
     <em|Charakteristisch:> Methode <verbatim|führeAus()> des Befehlsobjekts.
 
@@ -867,6 +938,9 @@
     (Bequemlichkeitsklasse). Die Standardwerte können <em|während des
     Programmablaufs> gesetzt werden und gelten dann für alle zukünftigen
     Aufrufe.
+
+    <em|Charakteristisch:> Methode <verbatim|setzeZustand()>, überladene
+    Methoden mit verschiedenen Parameteranzahlen
 
     <image|beqklasse.png|40%|40%||>
 
@@ -1026,7 +1100,7 @@
     ijk-Algorithmus: Klassischer Algorithmus zur Multiplikation zweier
     Matrizen
 
-    ijk-Algorithmus: Cache-freundliche Version
+    ikj-Algorithmus: Cache-freundliche Version
 
     <item*|Numerische Integration>Aufteilen des Integrationsbereich in
     Teilbereiche, Aufsummieren des Ergebnisses.
@@ -1348,6 +1422,18 @@
 
   Folien S. 125--137
 
+  <section|Wartungs- und Pflegephase>
+
+  <\description>
+    <item*|Wartung>Behebung von <em|Fehler>ursachen von in Betrieb
+    befindlichen Software-Produkten, wenn die Fehlerwirkung bekannt ist
+    <em|(ereignisgesteuert)>
+
+    <item*|Pflege>Durchführung von Änderungen und <em|Erweiterungen> von in
+    Betrieb befindlichen Software-Produkten, wenn die Art der gewünschten
+    Änderungen/Erweiterungen feststeht.
+  </description>
+
   <section|Prozessmodelle>
 
   <\description>
@@ -1367,6 +1453,9 @@
     <em|4 Submodelle:> Projektmanagement, Qualitätssicherung,
     Konfigurationsmanagement, Systemerstellung; jeweils gegliedert in
     <em|Vorgehensbausteine.>
+
+    <em|4 Bearbeitungszustände:> Geplant, In Bearbeitung, Vorgelegt,
+    Akzeptiert
 
     <em|\RHandelsübliches`` V-Modell:>\ 
 
@@ -1406,7 +1495,11 @@
     inkrementelle Planung, wenig unnötige Dokumente, flexible Reaktion auf
     Änderungen, Einbeziehung des Kunden in die Entwicklung
 
-    Paarpro
+    <em|Methoden:> Paarprogrammierung, sehr häufiges und automatisches Testen
+    [automatische Komponententests, durch Kunden spezifizierter
+    Akzeptanztest], testgetriebene Entwicklung [jede Verhaltensänderung am
+    Quelltext wird durch automatisierten Test modelliert, Testcode vor
+    Anwendungsode]
   </description>
 </body>
 
@@ -1454,6 +1547,7 @@
     <associate|auto-4|<tuple|3.1|3>>
     <associate|auto-40|<tuple|7.5|?>>
     <associate|auto-41|<tuple|8|?>>
+    <associate|auto-42|<tuple|9|?>>
     <associate|auto-5|<tuple|3.2|3>>
     <associate|auto-6|<tuple|4|3>>
     <associate|auto-7|<tuple|4.1|3>>
@@ -1623,6 +1717,14 @@
       <with|par-left|<quote|1.5fn>|Integrationstests
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-40>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Wartungs-
+      und Pflegephase> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-41><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Prozessmodelle>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-42><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
