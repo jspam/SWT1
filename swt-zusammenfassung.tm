@@ -66,12 +66,14 @@
     scheinbare Alterung), nicht durch physikalische Gesetze begrenzt,
     <em|nicht> leichter zu ändern als ein physikalisches Produkt gleicher
     Komplexität, schneller und leichter zu verteilen als physikalische
-    Produkte, schwer zu \Rvermessen``.
+    Produkte, schwer zu \Rvermessen`` <math|\<rightarrow\>> Software ist
+    <em|schwer zu entwickeln>.
 
     <item*|Anforderungen>
 
     <\description>
-      <item*|Funktionale Attribute>Spezifizieren die Funktion der Software.
+      <item*|Funktionale Attribute>Spezifizieren die Funktion der Software,
+      etwa die Reaktion auf bestimmte Eingaben.
 
       <item*|Nichtfunktionale Attribute/Qualitätsattribute>Spezifizieren,
       <em|wie gut> die Software ihre Funktion erfüllt
@@ -128,7 +130,8 @@
     Aktionen und Ereignissen. Kann Texte, Bilder, Videos und Ablaufpläne
     enthalten.
 
-    <item*|Anwendungsfälle>
+    <item*|Anwendungsfälle>Allgemeine Beschreibung einer bestimmten
+    Verwendung des Systems.
 
     <\description>
       <item*|Akteur>Rolle eines Benutzers oder eines anderen Systems, das mit
@@ -220,6 +223,134 @@
     <item>Rechtliche Gesichtspunkte [Datenschutz, Zertifizierung, Standards]
   </itemize-minus>
 
+  <subsection|Aufwandsschätzung>
+
+  <\description>
+    <item*|Wirtschaftlichkeit eines Produkts><em|Deckungsbetrag> = Preis
+    <math|-> laufende variable Kosten. Dann gilt für den Gewinn bzw. Verlust
+    aus einem Softwareprojekt:
+
+    <\equation*>
+      Gewinn = Deckungsbetrag \<cdot\> geschätzte Menge - einmalige
+      Entwicklungskosten
+    </equation*>
+
+    <item*|Entwicklungskosten>Personalkosten [Hauptanteil], anteilige andere
+    Kosten (Rechner, Software, Schulungen, Büromaterial etc.)
+
+    <item*|Lines of Code (LOC) / 1000 Lines of Code (KLOC)>Alle
+    Vereinbarungs- und Anweisungszeilen werden gezählt (ohne Kommentarzeilen)
+
+    <item*|Programmierproduktivität>LOC, die ein Mitarbeiter pro Zeit schafft
+
+    <item*|Personenmonat>Menge an Arbeit, die eine Person durchschnittlich in
+    einem Monat schafft
+
+    <\itemize-minus>
+      <item>1 Personenjahr = 9 oder 10 Personenmonate
+
+      <item>1 Personenmonat = 4 Personenwochen
+
+      <item>1 Personenwoche = 5 Personentage
+
+      <item>1 Personentag = 8 Personenstunden
+    </itemize-minus>
+
+    <math|\<Rightarrow\>> 160h pro Kalendermonat
+
+    <item*|Faustregel>Durchschnittliche Softwareentwicklung liefert 350
+    getestete LOC pro Ingenieurmonat (alle Phasen von Definition bis
+    Implementierung)
+
+    <item*|Einflussfaktoren>Quantität, Qualität, Entwicklungsdauer, Kosten
+
+    <image|teufelsquadrat.png|50%|||>
+
+    \RTeufelsquadrat``: Ecken beweglich, Fläche muss immer gleich bleiben
+    [Achsen: nach aussen hin besser, nach innen schlechter]
+
+    <\description>
+      <item*|Quantität><em|Umfang> (KLOC, lineare oder überproportionale
+      Beziehung zum Aufwand), <em|Komplexität> (leicht/mittel/schwer,
+      Schulnoten)
+
+      <item*|Qualität>Durch verschiedene Qualitätsmerkmale mit jeweils
+      eigenen Kennzahlen ausgedrückt, höhere Qualität erhöht den Aufwand
+
+      <item*|Entwicklungsdauer>Kürzere Dauer <math|\<Rightarrow\>> mehr
+      Mitarbeiter <math|\<Rightarrow\>> höherer Kommunikationsaufwand
+      <math|\<Rightarrow\>> geringere Produktivität [und umgekehrt
+
+      Also nur annähernder Zusammenhang zwischen Aufwand (in PM) und Dauer
+
+      <item*|Produktivität>Einflussfaktoren: Mitarbeiter
+      [Lernfähigkeit/Motivation/Ausbildung/ Vertrautheit mit
+      Anwendungsgebiet], eingesetzte Programmiersprachen/Methoden/ Werkzeuge,
+      Arbeitsklima
+    </description>
+  </description>
+
+  <subsubsection|Methoden zur Aufwandsschätzung>
+
+  <\description>
+    <item*|Analogiemethode>Vergleich mit bereits abgeschlossenen
+    Produktentwicklungen anhand von Ähnlichkeitskriterien [Anwendungsgebiet,
+    Umfang, Komplexität, Sprache, Umgebung]
+
+    Aufwand des Vergleichsprodukts liegt in PM vor
+
+    + leicht, intuitiv
+
+    <math|-> nicht übertragbar, fehlende allgemeine Vorgehensweise
+
+    <item*|Relationsmethode>Direkter Vergleich mit ähnlichen Entwicklungen,
+    Aufwandsanpassung durch Erfahrungswerte. Unterschied zur Analogiemethode:
+    <em|Faktorenlisten,> <em|Richtlinien>
+
+    Faktorenlisten: Vergleich von Programmiersprachen, Erfahrung,
+    Datenstrukturen; Rechnen direkt mit Prozentwerten und Aufsummieren
+
+    <item*|Multiplikatormethode / \RAufwand-Pro-Einheit-Methode``>Zerlegen in
+    Teilprodukte, bis jedem Teilprodukt ein feststehender Aufwand (z.B. in
+    LOC) zugeordnet werden kann.
+
+    Teilprodukte werden Kategorie zugeordnet, Multiplikation mit Aufwand der
+    Kategorie
+
+    <math|\<Rightarrow\>> umfangreiche Datensammlung, Umrechnung LOC in PM,
+    Aktualisierung notwendig
+
+    <item*|Phasenaufteilung>Ermittlung der Aufwandsaufteilung auf Phasen bei
+    abgeschlossenen Projekten. Dann Schätzung der restlichen Phasen nach
+    Durchführung der ersten (oder nach detaillierter Schätzung der ersten)
+
+    <math|+> frühzeitig einsetzbar
+
+    <math|-> prozentualer Anteil der Phasen variiert von Projekt zu Projekt
+    <math|\<Rightarrow\>> <em|kaum brauchbar>
+
+    <item*|Bewertung der Methoden>Keine Methode allein ist ausreichend,
+    Auswahl nach Zeitpunkt und Kenntnis der Daten.
+
+    <em|Frühzeitige, grobe Schätzung:> Analogiemethode, Relationsmethode
+
+    <em|Einflussfaktoren genauer bekannt:> Multiplikatormethode
+
+    <item*|COCOMO II>Berechnet aus der Grösse (KLOC) und 22 Einflussfaktoren
+    die Gesamtdauer in Personenmonaten
+
+    <\equation*>
+      PM = A\<cdot\><around*|(|Size|)><rsup|1.01+0.01\<cdot\><big-around|\<sum\>|<rsub|j=1><rsup|5>
+      SF<rsub|j>>>\<cdot\><big-around|\<prod\>|<rsub|i=1><rsup|17>EM<rsub|i>>
+    </equation*>
+
+    Aufwand wächst etwas überproportional zum Umfang (Exponent \<gtr\> 1)
+
+    SF: Skalierungsfaktoren
+
+    EM: Multiplikative Kostenfaktoren (Produkt-/Plattform-/Personal-/Projektfaktoren)
+  </description>
+
   <section|Definitionsphase>
 
   Ziel: Erstellung des Pflichtenhefts
@@ -292,14 +423,15 @@
     <item*|Signaturvererbung/Implementierungsvererbung>Bei der
     Signaturvererbung wird nur die Methodensignatur vererbt, bei der
     Implementierungsvererbung zusätzlich die Implementierung aus der
-    Oberklasse.
+    Oberklasse. Signaturvererbung ist die Voraussetzung für
+    Implementierungsvererbung-
 
     <item*|Überschreiben>Neuimplementieren der geerbten Methode unter
     Beibehaltung der Signatur
 
     <item*|Überladen>Mehrere Methoden mit gleichen Namen, aber
     unterschiedlicher Signatur [reines Komfortmerkmal, hat nichts mit
-    OO/Vererbung zu tun
+    OO/Vererbung zu tun]
 
     <item*|Polymorphie>Vielgestaltigkeit
 
@@ -662,6 +794,11 @@
     eine andere Schnittstelle an <math|\<rightarrow\>> Zusammenarbeit
     inkompatibler Klassen
 
+    <em|Mitwirkende:> <verbatim|Adapter>, <verbatim|AdaptierteKlasse>,
+    <verbatim|<em|Ziel>>schnittstelle. Adapter implementiert die
+    Zielschnittstelle und lässt sich deshalb vom Klienten wie eine Instanz
+    der Zielklasse verwenden.
+
     <em|Anwendung:> Wiederverwendung einer existierenden Klasse
 
     <image|adapter.png|33%|33%||>
@@ -671,7 +808,15 @@
     dass alle abhängigen Objekte benachrichtigt und automatisch aktualisiert
     werden.
 
-    Beobachter benutzen das Subjekt (i.S. der Benutzthierarchie)
+    Beobachter benutzen das Subjekt (i.S. der Benutzthierarchie), umgekehrt
+    nicht (da das Subjekt seine Beobachter zwar aufruft, aber nicht auf einen
+    korrekten Ablauf der aufgerufenen Methoden angewiesen ist)
+
+    <em|Mitwirkende:> <verbatim|<em|Subjekt>> (verwaltet Liste von
+    Beobachtern, enthält Methode zum Benachrichtigen aller Beobachter),
+    <verbatim|<em|Beobachter>> (enthält Callback-Methode, die nach
+    Aktualisierung des Subjekts aufgerufen wird),
+    <verbatim|KonkretesSubjekt>, <verbatim|KonkreterBeobachter>
 
     <em|Anwendbarkeit:> Benachrichtigung von Objekten, ohne etwas über diese
     zu wissen
@@ -685,6 +830,9 @@
 
     <item*|Brücke>Entkoppelt <em|Abstraktion> von ihrer <em|Implementierung,>
     sodass beide unabhängig voneinander variiert werden können.
+
+    <em|Mitwirkende:> <verbatim|Abstraktion>, <verbatim|<em|Implementierer>>,
+    <verbatim|KonkreteImplementierer>
 
     <em|Anwendbarkeit:> Vermeidung dauerhafter Verbindung zwischen
     Abstraktion und ihrer Implementierung, Erweiterbarkeit sowohl von
@@ -701,6 +849,12 @@
 
     Iterator ist <em|robust,> d.h. jeder Iterator enthält eine eigene
     \RLaufvariable``.
+
+    <em|Mitwirkende:> <em|<verbatim|Iterator>>-Interface (mit den Methoden
+    <em|<verbatim|hasNext()>>, <em|<verbatim|next()>>,
+    <em|<verbatim|remove()>>), <em|<verbatim|Aggregat>>-Klasse (enthält
+    <verbatim|Iterator>-Attribut), <verbatim|KonkretesAggregat>,
+    <verbatim|KonkreterIterator>
 
     <em|Beispiel:> Java-Interface <verbatim|Iterator>
 
@@ -729,6 +883,9 @@
       <item*|Dekorierer>Auch eine Art Stellvertreter (siehe unten)
     </description>
 
+    Mitwirkende: <em|<verbatim|Subjekt>> (gemeinsame Oberklasse),
+    <verbatim|EchtesSubjekt>, <verbatim|Stellvertreter>
+
     <image|stellvertreter.png|40%|40%||>
 
     <item*|Dekorierer>Fügt dynamisch neue Funktionalität zu einem Objekt
@@ -738,7 +895,7 @@
     Ziel: Transparente Entkopplung einer bestimmten <em|Instanz> ggü. dem
     Rest des Programms
 
-    Mitwirkende: <verbatim|Subjekt (Komponente)>, <verbatim|Dekorierer>,
+    Mitwirkende: <verbatim|<em|Subjekt (Komponente)>>, <verbatim|Dekorierer>,
     <verbatim|Konkrete Komponente>
 
     <image|dekorierer.png|40%|40%||>
@@ -766,8 +923,8 @@
     <item*|Abstrakte Fabrik>Schnittstelle zum Erzeugen einer <em|Familie
     verwandter Objekte,> ohne konkrete Klassen zu benennen.
 
-    <em|Mitwirkende:> <verbatim|AbstrakteFabrik>,
-    <verbatim|KonkreteFabrik>en, <verbatim|Produkte>,
+    <em|Mitwirkende:> <verbatim|<em|AbstrakteFabrik>>,
+    <verbatim|KonkreteFabrik>en, <verbatim|<em|Produkte>>,
     <verbatim|KonkreteProdukte>
 
     <em|Anwendbarkeit:> Wenn eine Familie von aufeinander abgestimmten
@@ -778,9 +935,9 @@
     <item*|Besucher>Kapselt eine <em|Operation> auf Elementen einer Struktur
     als ein <em|Objekt.>
 
-    Mitwirkende: <verbatim|Element>, <verbatim|KonkreteElemente>
+    Mitwirkende: <verbatim|<em|Element>>, <verbatim|KonkreteElemente>
     (implementieren eine \RnimmEntgegen``-Methode für den allgemeinen
-    Besucher), <verbatim|Besucher> (enthält eine \RBesuche``-Methode für
+    Besucher), <verbatim|<em|Besucher>> (enthält eine \RBesuche``-Methode für
     jedes konkrete Element!), <verbatim|KonkreteBesucher>
 
     <em|Zweck:> Definition einer neuen Operation auf Klassen, ohne diese
@@ -792,9 +949,9 @@
     zum Erzeugen eines Objekts, aber lässt <em|Unterklassen entscheiden,> von
     <em|welcher Klasse> das zu erzeugende Objekt ist.
 
-    <em|Mitwirkende:> <verbatim|Erzeuger> (mit abstrakter Fabrikmethode),
-    <verbatim|KonkreterErzeuger> (der die Fabrikmethode implementiert),
-    <verbatim|Produkt>, <verbatim|KonkretesProdukt>
+    <em|Mitwirkende:> <verbatim|<em|Erzeuger>> (mit abstrakter
+    Fabrikmethode), <verbatim|KonkreterErzeuger> (der die Fabrikmethode
+    implementiert), <verbatim|<em|Produkt>>, <verbatim|KonkretesProdukt>
 
     <em|Anwendung:> Klasse kennt Objekte, die sie erzeugt, nicht im Voraus;
     Delegation an Hilfs-Unterklassen.
@@ -808,8 +965,8 @@
     Hierarchien zu repräsentieren. Einheitliche Behandlung von Objekten wie
     Aggregaten.
 
-    <em|Mitwirkende:> <verbatim|Komponente<strong|>> (gemeinsame, abstrakte
-    Oberklasse), <verbatim|Kompositum>, <verbatim|Blatt>
+    <em|Mitwirkende:> <verbatim|<em|Komponente<strong|>>> (gemeinsame,
+    abstrakte Oberklasse), <verbatim|Kompositum>, <verbatim|Blatt>
 
     <em|Beispiel:> <verbatim|Component>-Klasse in Java
 
@@ -835,7 +992,7 @@
     und macht sie austauschbar.
 
     <em|Mitwirkende:> <verbatim|Kontext> (über <em|Aggregation> mit Strategie
-    verknüpft), <verbatim|Strategie> (abstrakt),
+    verknüpft), <verbatim|<em|Strategie>> (abstrakt),
     <verbatim|KonkreteStrategie>n
 
     <em|Zweck:> Variation des Algorithmus unabhängig vom nutzenden Klienten.
@@ -1423,6 +1580,110 @@
 
   Folien S. 125--137
 
+  <image|integration.png|40%|40%||>
+
+  <strong|Unmittelbar>
+
+  <\description>
+    <item*|big bang>Gleichzeitiges Integrieren aller Komponenten
+
+    <math|-> kaum systematisierbar, schwierige Testfallkonstruktion
+
+    <math|-> \RNothing works until everything works``
+
+    <item*|geschäftsprozessorientiert>Integration aller Komponenten, die von
+    einem bestimmten Geschäftsprozess oder Anwendungsfall betroffen sind
+  </description>
+
+  <strong|Inkrementell>
+
+  <em|testzielorientiert>
+
+  <\description>
+    <item*|funktionsorientiert>Spezifikation funktionaler Testfälle
+    (<math|\<leftrightarrow\>> funktionale Anforderungen) und schrittweise
+    Integration und Test der betroffenen Komponenten
+
+    <item*|nach Verfügbarkeit>Integration einer Komponente sofort nach
+    Abschluss des Komponententests <math|\<rightarrow\>> Reihenfolge durch
+    Fertigstellung der Implementierung festgelegt
+
+    <math|-> schlecht planbar
+  </description>
+
+  <em|vorgehensorientiert>
+
+  <\description>
+    <item*|Top-down>Integration von höchster Ebene (z.B. Benutzeroberfläche)
+
+    <math|+> Defekte in der Produktdefinition früh erkennbar
+
+    <math|-> Zusammenspiel mit Hardware/Basissoftware spät erkennbar
+
+    <math|-> aufwendige Testhelfer zur Simulation von Diensten niedriger
+    Ebenen
+
+    <item*|Bottom-up>Integration von niedrigster logischer Ebene
+    (Komponenten, die nicht von anderen Komponenten abhängen)
+
+    <math|+> Defekte im Zusammenhang mit Hardware/Basissoftware früh
+    erkennbar
+
+    <math|+> Testbedingungen leichter herstellbar
+
+    <math|+> Testergebnisse leichter interpretierbar
+
+    <math|-> Defekte in der Produktdefinition spät erkennbar
+
+    <math|-> Erstellen von Testtreibern notwendig
+
+    <item*|Outside-in>Schrittweise Integration sowohl von oben als auch von
+    unten aufeinander zu
+
+    Kompromiss zwischen Top-down und Bottom-up
+
+    <item*|Inside-out>Schrittweise Integration aus der Mitte in beide
+    Richtungen nach aussen
+
+    Vereinigt eher die Nachteile von Top-down und Bottom-up, höchstens
+    sinnvoll in Verbindung mit Hardest-first
+
+    <item*|Hardest first>Kritische Komponenten (kompliziert zu testen,
+    fehleranfällig) zuerst
+
+    <math|+> Kritische Komponenten werden bei jedem Integrationsschritt
+    geprüft und sind damit am Schluss am besten getestet worden
+  </description>
+
+  <subsection|Systemtest>
+
+  Prüfung des <em|Komplettsystems> gegen die <em|Definition>, wobei das
+  System als <em|Black Box> gesehen wird (nur Schnittstellen verfügbar) und
+  eine <em|reale/realistische> Umgebung verwendet wird.
+
+  <\description>
+    <item*|Funktionaler Systemtest>Überprüfung von Korrektheit und
+    Vollständigkeit
+
+    <item*|Nichtfunktionaler Systemtest>Überprüfung der nichtfunktionalen
+    Anforderungen
+
+    <item*|Leistungstests>Siehe oben.
+
+    <item*|Regressionstest>Wiederholung eines bereits vollständig
+    durchgeführten Systemtests zur Vermeidung neuer Fehler. Vergleich der
+    Testergebnisse mit denen des vorherigen Tests.
+  </description>
+
+  <subsection|Abnahmetest>
+
+  Beim Kunden, mit dem Kunden/unter Federführung des Kunden, mit echten Daten
+
+  Eventuell werden Testfälle des Systemstests übernommen/modifiziert.
+
+  <em|Formale Abnahme:> Bindende Erklärung der Annahme des Produkts durch den
+  Auftraggeber
+
   <section|Wartungs- und Pflegephase>
 
   <\description>
@@ -1513,47 +1774,51 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.4|5>>
-    <associate|auto-11|<tuple|1|5>>
-    <associate|auto-12|<tuple|5|6>>
-    <associate|auto-13|<tuple|5.1|6>>
-    <associate|auto-14|<tuple|5.1.1|7>>
-    <associate|auto-15|<tuple|5.2|7>>
-    <associate|auto-16|<tuple|5.2.1|7>>
-    <associate|auto-17|<tuple|5.2.2|7>>
-    <associate|auto-18|<tuple|5.3|8>>
-    <associate|auto-19|<tuple|5.4|9>>
+    <associate|auto-10|<tuple|4.2|5>>
+    <associate|auto-11|<tuple|4.3|5>>
+    <associate|auto-12|<tuple|4.4|6>>
+    <associate|auto-13|<tuple|1|6>>
+    <associate|auto-14|<tuple|5|7>>
+    <associate|auto-15|<tuple|5.1|7>>
+    <associate|auto-16|<tuple|5.1.1|7>>
+    <associate|auto-17|<tuple|5.2|7>>
+    <associate|auto-18|<tuple|5.2.1|8>>
+    <associate|auto-19|<tuple|5.2.2|9>>
     <associate|auto-2|<tuple|2|1>>
-    <associate|auto-20|<tuple|5.4.1|9>>
-    <associate|auto-21|<tuple|5.4.2|12>>
-    <associate|auto-22|<tuple|5.4.3|14>>
-    <associate|auto-23|<tuple|5.4.4|16>>
-    <associate|auto-24|<tuple|5.4.5|17>>
-    <associate|auto-25|<tuple|6|18>>
-    <associate|auto-26|<tuple|6.1|18>>
-    <associate|auto-27|<tuple|6.2|19>>
-    <associate|auto-28|<tuple|6.2.1|19>>
-    <associate|auto-29|<tuple|6.2.2|20>>
+    <associate|auto-20|<tuple|5.3|9>>
+    <associate|auto-21|<tuple|5.4|12>>
+    <associate|auto-22|<tuple|5.4.1|14>>
+    <associate|auto-23|<tuple|5.4.2|16>>
+    <associate|auto-24|<tuple|5.4.3|17>>
+    <associate|auto-25|<tuple|5.4.4|18>>
+    <associate|auto-26|<tuple|5.4.5|18>>
+    <associate|auto-27|<tuple|6|19>>
+    <associate|auto-28|<tuple|6.1|19>>
+    <associate|auto-29|<tuple|6.2|20>>
     <associate|auto-3|<tuple|3|2>>
-    <associate|auto-30|<tuple|6.2.3|20>>
-    <associate|auto-31|<tuple|6.2.4|20>>
-    <associate|auto-32|<tuple|6.3|21>>
-    <associate|auto-33|<tuple|6.4|21>>
-    <associate|auto-34|<tuple|7|21>>
-    <associate|auto-35|<tuple|7.1|23>>
-    <associate|auto-36|<tuple|7.2|?>>
-    <associate|auto-37|<tuple|7.3|?>>
-    <associate|auto-38|<tuple|7.4|?>>
-    <associate|auto-39|<tuple|7.4.1|?>>
+    <associate|auto-30|<tuple|6.2.1|20>>
+    <associate|auto-31|<tuple|6.2.2|20>>
+    <associate|auto-32|<tuple|6.2.3|21>>
+    <associate|auto-33|<tuple|6.2.4|21>>
+    <associate|auto-34|<tuple|6.3|21>>
+    <associate|auto-35|<tuple|6.4|23>>
+    <associate|auto-36|<tuple|7|?>>
+    <associate|auto-37|<tuple|7.1|?>>
+    <associate|auto-38|<tuple|7.2|?>>
+    <associate|auto-39|<tuple|7.3|?>>
     <associate|auto-4|<tuple|3.1|3>>
-    <associate|auto-40|<tuple|7.5|?>>
-    <associate|auto-41|<tuple|8|?>>
-    <associate|auto-42|<tuple|9|?>>
+    <associate|auto-40|<tuple|7.4|?>>
+    <associate|auto-41|<tuple|7.4.1|?>>
+    <associate|auto-42|<tuple|7.5|?>>
+    <associate|auto-43|<tuple|7.6|?>>
+    <associate|auto-44|<tuple|7.7|?>>
+    <associate|auto-45|<tuple|8|?>>
+    <associate|auto-46|<tuple|9|?>>
     <associate|auto-5|<tuple|3.2|3>>
-    <associate|auto-6|<tuple|4|3>>
-    <associate|auto-7|<tuple|4.1|3>>
-    <associate|auto-8|<tuple|4.2|4>>
-    <associate|auto-9|<tuple|4.3|5>>
+    <associate|auto-6|<tuple|3.3|3>>
+    <associate|auto-7|<tuple|3.3.1|3>>
+    <associate|auto-8|<tuple|4|4>>
+    <associate|auto-9|<tuple|4.1|5>>
   </collection>
 </references>
 
@@ -1561,7 +1826,7 @@
   <\collection>
     <\associate|table>
       <tuple|normal|Linguistische Analyse (nach Abbott) als erste
-      Annäherung|<pageref|auto-11>>
+      Annäherung|<pageref|auto-13>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Konfigurationsverwaltung>
@@ -1584,148 +1849,156 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Definitionsphase>
+      <with|par-left|<quote|1.5fn>|Aufwandsschätzung
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
+      <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1.5fn>|Pflichtenheft
+      <with|par-left|<quote|3fn>|Methoden zur Aufwandsschätzung
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1.5fn>|Objektorientierung
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Definitionsphase>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-8><vspace|0.5fn>
 
-      <with|par-left|<quote|1.5fn>|UML <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1.5fn>|Pflichtenheft
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1.5fn>|Objektmodellierung
+      <with|par-left|<quote|1.5fn>|Objektorientierung
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
+      <with|par-left|<quote|1.5fn>|UML <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
+
+      <with|par-left|<quote|1.5fn>|Objektmodellierung
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Entwurfsphase
       (Designphase)> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12><vspace|0.5fn>
+      <no-break><pageref|auto-14><vspace|0.5fn>
 
       <with|par-left|<quote|1.5fn>|Modularer Entwurf
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
+      <no-break><pageref|auto-15>>
 
       <with|par-left|<quote|3fn>|Benutztrelation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14>>
+      <no-break><pageref|auto-16>>
 
       <with|par-left|<quote|1.5fn>|Objektorientierter Entwurf
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|3fn>|Externer Entwurf
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-18>>
 
       <with|par-left|<quote|3fn>|Interner Entwurf
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-19>>
 
       <with|par-left|<quote|1.5fn>|Architekturstile
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|<quote|1.5fn>|Entwurfsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-21>>
 
       <with|par-left|<quote|3fn>|Entkopplungsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-22>>
 
       <with|par-left|<quote|3fn>|Varianten-Muster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21>>
+      <no-break><pageref|auto-23>>
 
       <with|par-left|<quote|3fn>|Zustandshandhabungsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22>>
+      <no-break><pageref|auto-24>>
 
       <with|par-left|<quote|3fn>|Steuerungsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23>>
+      <no-break><pageref|auto-25>>
 
       <with|par-left|<quote|3fn>|Bequemlichkeitsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-24>>
+      <no-break><pageref|auto-26>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Implementierungsphase>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-25><vspace|0.5fn>
+      <no-break><pageref|auto-27><vspace|0.5fn>
 
       <with|par-left|<quote|1.5fn>|Abbildung von UML in Code
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-26>>
+      <no-break><pageref|auto-28>>
 
       <with|par-left|<quote|1.5fn>|Parallelität
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-27>>
+      <no-break><pageref|auto-29>>
 
       <with|par-left|<quote|3fn>|Parallelität in Java
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-28>>
+      <no-break><pageref|auto-30>>
 
       <with|par-left|<quote|3fn>|Parallele Entwurfsmuster
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-29>>
+      <no-break><pageref|auto-31>>
 
       <with|par-left|<quote|3fn>|Parallele Algorithmen
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-30>>
+      <no-break><pageref|auto-32>>
 
       <with|par-left|<quote|3fn>|Bewertung paralleler Algorithmen
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-31>>
+      <no-break><pageref|auto-33>>
 
       <with|par-left|<quote|1.5fn>|Programmierrichtlinien
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-32>>
+      <no-break><pageref|auto-34>>
 
       <with|par-left|<quote|1.5fn>|Selbstkontrolliertes Programmieren
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-33>>
+      <no-break><pageref|auto-35>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Testphase>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-34><vspace|0.5fn>
+      <no-break><pageref|auto-36><vspace|0.5fn>
 
       <with|par-left|<quote|1.5fn>|Kontrollflussorientierte Testverfahren
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-35>>
+      <no-break><pageref|auto-37>>
 
       <with|par-left|<quote|1.5fn>|Funktionale Testverfahren
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-36>>
+      <no-break><pageref|auto-38>>
 
       <with|par-left|<quote|1.5fn>|Leitungstests
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-37>>
+      <no-break><pageref|auto-39>>
 
       <with|par-left|<quote|1.5fn>|Manuelle Prüfmethoden
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-38>>
+      <no-break><pageref|auto-40>>
 
       <with|par-left|<quote|3fn>|Software-Inspektion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-39>>
+      <no-break><pageref|auto-41>>
 
       <with|par-left|<quote|1.5fn>|Integrationstests
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-40>>
+      <no-break><pageref|auto-42>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Wartungs-
       und Pflegephase> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-41><vspace|0.5fn>
+      <no-break><pageref|auto-43><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Prozessmodelle>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-42><vspace|0.5fn>
+      <no-break><pageref|auto-44><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
