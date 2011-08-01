@@ -73,7 +73,8 @@
 
     <\description>
       <item*|Funktionale Attribute>Spezifizieren die Funktion der Software,
-      etwa die Reaktion auf bestimmte Eingaben.
+      etwa die Reaktion auf bestimmte Eingaben. Beschreiben auch, was das
+      Produkt nicht tun sollte.
 
       <item*|Nichtfunktionale Attribute/Qualitätsattribute>Spezifizieren,
       <em|wie gut> die Software ihre Funktion erfüllt
@@ -132,6 +133,14 @@
 
     <item*|Anwendungsfälle>Allgemeine Beschreibung einer bestimmten
     Verwendung des Systems.
+
+    <math|+> Leicht zu schreiben, leicht zu verstehen
+
+    <math|+> Hilft bei der Bestimmung der Systemgrenzen
+
+    <math|-> Anwendungsfälle erfassen kaum Domänenwissen
+
+    <math|-> Selten exakt
 
     <\description>
       <item*|Akteur>Rolle eines Benutzers oder eines anderen Systems, das mit
@@ -456,7 +465,7 @@
 
       <item*|Kontravarianz>In der überschriebenen Methode wird eine
       Verallgemeinerung des Parametertyps verwendet <math|\<rightarrow\>>
-      Parameter
+      Parameter [allerdings in Java nicht erlaubt]
 
       <item*|Invarianz>Keine Typmodifikation (<math|\<rightarrow\>>
       Parameter, die gleichzeitig Ein- und Ausgabeparameter sind)
@@ -475,6 +484,18 @@
 
     <item*|Dynamisches Modell>Interaktionsdiagramme, Zustandsdiagramme,
     Aktivitätsdiagramme
+  </description>
+
+  Unterschied Attribute in UML <math|\<leftrightarrow\>> Instanzvariablen im
+  Code
+
+  <\description>
+    <item*|Instanzvariablen>Speichern nicht nur Attribute, sondern auch
+    Zustand und Assoziationen
+
+    <item*|Attribute>Können Einschränkungen oder Zusicherungen (z.B.
+    Transaktionalität, ACID-Prinzip) enthalten, die sich nicht alleine durch
+    eine Instanzvariable realisieren lassen.
   </description>
 
   <subsection|Objektmodellierung>
@@ -1018,11 +1039,13 @@
     <item*|Fliegengewicht>Objekte kleinster Granularität werden <em|gemeinsam
     genutzt,> um grosse Mengen von ihnen <em|effizient speichern> zu können.
 
-    <em|Innerer/intrinsischer Zustand:> für alle Exemplare gemeinsam, wird in
-    der Fliegengewicht-Instanz gespeichert.
+    <em|Innerer/intrinsischer Zustand:> für alle Exemplare gemeinsam
+    (unabhängig vom Einsatzkontext), wird in der Fliegengewicht-Instanz
+    gespeichert.
 
     <em|Äusserer/extrinsischer Zustand:> für jedes Exemplar unterschiedlich,
-    wird in externer Datenstruktur gespeichert.
+    wird in externer Datenstruktur gespeichert, nur im Verwendungskontext des
+    Fliegengewichts bekannt
 
     <em|Mitwirkende:> <verbatim|FliegengewichtFabrik>,
     <verbatim|Fliegengewicht> (abstrakt), <verbatim|KonkreteFliegengewicht>e
@@ -1379,7 +1402,7 @@
     versorgt sie mit Testfällen.
 
     <item*|Testphasen>Komponententest, Integrationstest, Systemtest,
-    Abnahmetest
+    Abnahmetest/Akzeptanztest
 
     <image|testphasen.png|50%|||>
 
@@ -1446,9 +1469,15 @@
     mit allen möglichen Kombinationen der Wahrheitswerte belegt. [Aufwendig
     und unpraktikabel]
 
+    Kurzauswertung spielt keine Rolle!
+
     <item*|Minimal-mehrfache Bedingungsüberdeckung>Jede Bedingung (ob atomar
     oder zusammengesetzt) muss einmal zu <verbatim|wahr> und einmal zu
     <verbatim|falsch> evaluieren.
+
+    <strong|Vorsicht> bei Kurzauswertung von Ausdrücken -- hier werden
+    eventuell Teilausdrücke <em|nicht ausgewertet> <math|\<rightarrow\>> mehr
+    Testfälle notwendig!
   </description>
 
   <image|testverfahren.png|40%|40%||>
@@ -1757,11 +1786,93 @@
     inkrementelle Planung, wenig unnötige Dokumente, flexible Reaktion auf
     Änderungen, Einbeziehung des Kunden in die Entwicklung
 
-    <em|Methoden:> Paarprogrammierung, sehr häufiges und automatisches Testen
-    [automatische Komponententests, durch Kunden spezifizierter
-    Akzeptanztest], testgetriebene Entwicklung [jede Verhaltensänderung am
-    Quelltext wird durch automatisierten Test modelliert, Testcode vor
-    Anwendungsode]
+    <em|Methoden:>
+
+    <\description>
+      <item*|Testgetriebene Entwicklung>\RTestcode vor Anwendungscode``.
+      Funktionalität wird in vier Phasen implementiert:
+
+      <\enumerate-numeric>
+        <item><em|\Rgrün <math|\<rightarrow\>> rot``:> Schreibe einen Test,
+        der fehlschlägt und einen Teil, der die Funktionalität spezifiziert.
+        Schreibe ggf. gerade soviel Quelltext, dass der Test übersetzt werden
+        kann.
+
+        <item><em|\Rrot <math|\<rightarrow\>> grün``:> Schreibe gerade soviel
+        Quelltext, dass alle Tests erfolgreich laufen.
+
+        <item><em|\Rgrün <math|\<rightarrow\>> grün``:> Eliminiere
+        Duplikationen und andere schlechte Eigenschaften im Quelltext
+        (Refactoring)
+
+        <strong|Refactoring:> Interne Umstrukturierung, ohne das Verhalten zu
+        ändern.
+
+        <strong|Einfache Form:> Alle Tests erfüllt, verständlich, drückt
+        Intention der Programmierer aus, enthält keine duplizierte Logik,
+        möglichst wenige Klassen und Methoden \ \ \ [in dieser Reihenfolge!]
+
+        <item>Wiederhole Schritte 1--3, bis die gewünschte Funktionalität
+        implementiert ist
+      </enumerate-numeric>
+
+      Unterstützt durch Paarprogrammierung, häufige Integration,
+      inkrementeller Entwurf
+
+      Rolle der Komponententests: Qualitätssicherung,
+      Schnittstellendefinition, Modularisierung, ausführbare
+      Spezifikation/Dokumentation
+
+      <item*|Paarprogrammierung>Zwei Programmierer (\RFahrer/Beifahrer``)
+      arbeiten an einem Rechner. Dabei führt der Beifahrer ständige
+      Durchsicht durch.
+
+      <math|+> nachweislich höhere Qualität
+
+      <math|+> kompensiert fehlende Inspektionen/Reviews
+
+      <math|-> kein Vorteil gegenüber Einzelprogrammiererung und Inspektion
+      nachweisbar
+
+      <math|-> Nachteil bei Kosten und Ressourcenauslastung
+
+      <math|-> Schwierige Fehler werden nicht schneller erkannt
+
+      <item*|Testen bei XP>Programmierer schreiben automatische
+      Komponententests [müssen bei jeder Integration zu 100% laufen, dienen
+      auch als Regressionstests], Testausführung häufig und automatisch.
+
+      Kunde <em|spezifiziert> Akzeptanztests, die das Team implementiert.
+      Müssen spätestens bei der Auslieferung laufen.
+
+      <item*|Planungsspiel>Kunde = geschäftsrelevante Entscheidungen,
+      Entwicker: technische E.
+
+      <em|Geschäftsrelevante Entscheidungen:> Umfang, Prioritäten der
+      Funktionalität, Auslieferungsdatum.\ 
+
+      <em|Technische Entscheidungen:> Kosten- und Risikoschätzung,
+      Entwicklungsprozess, Ablaufplanung
+
+      Auslieferungsplanung <math|\<rightarrow\>> Iterationsplanung
+      <math|\<rightarrow\>> Iteration <math|\<rightarrow\>> Auslieferung
+
+      <image|planungsspiel.png|30%|||>
+
+      <\description>
+        <item*|Auslieferungsplanung>[1--4 Monate] Kunde äussert Wünsche, Team
+        schätzt Kosten/Risiken, Kunde priorisiert Wünsche
+        <math|\<rightarrow\>> Zeitplan für Kundenwünsche
+
+        <item*|Iterationsplanung>Aufgaben auf Aufgabenkarten notieren und
+        zuweisen
+      </description>
+
+      <em|Kunde (Benutzer) vor Ort> im selben Raum wie die Entwickler,
+      ständig verfügbar\ 
+    </description>
+
+    <em|Kent Beck:> Kosten für Änderungen haben bei XP eine obere Schranke.
   </description>
 </body>
 
@@ -1992,13 +2103,21 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-42>>
 
+      <with|par-left|<quote|1.5fn>|Systemtest
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-43>>
+
+      <with|par-left|<quote|1.5fn>|Abnahmetest
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-44>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Wartungs-
       und Pflegephase> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-43><vspace|0.5fn>
+      <no-break><pageref|auto-45><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Prozessmodelle>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-44><vspace|0.5fn>
+      <no-break><pageref|auto-46><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
