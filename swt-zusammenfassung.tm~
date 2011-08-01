@@ -138,7 +138,7 @@
 
     <math|+> Hilft bei der Bestimmung der Systemgrenzen
 
-    <math|-> Anwendungsfälle erfassen kaum Domänenwissen
+    <math|-> Erfassen kaum Domänenwissen
 
     <math|-> Selten exakt
 
@@ -288,7 +288,7 @@
 
       <item*|Entwicklungsdauer>Kürzere Dauer <math|\<Rightarrow\>> mehr
       Mitarbeiter <math|\<Rightarrow\>> höherer Kommunikationsaufwand
-      <math|\<Rightarrow\>> geringere Produktivität [und umgekehrt
+      <math|\<Rightarrow\>> geringere Produktivität [und umgekehrt]
 
       Also nur annähernder Zusammenhang zwischen Aufwand (in PM) und Dauer
 
@@ -803,6 +803,24 @@
   Vokabulars], Erfassung von Konzepten [Dokumentation des Entwurfs],
   Dokumentation und Förderung des Standes der Kunst, Verbesserung der
   Code-Qualität und -Struktur
+
+  <em|Übersicht:>
+
+  <\description>
+    <item*|Entkopplungsmuster>Adapter, Beobachter, Brücke, Iterator,
+    Stellvertreter, Dekorierer, Vermittler
+
+    <item*|Variantenmuster>Abstrakte Fabrik, Besucher, Fabrikmethode,
+    Kompositum, Schablonenmethode, Strategie
+
+    <item*|Zustandshandhabungsmuster >Einzelstück, Fliegengewicht, Memento,
+    Prototyp, Zustand
+
+    <item*|Steuerungsmuster>Befehl, Master/Worker
+
+    <item*|Bequemlichkeitsmuster>Bequemlichkeitsklasse, -methode,
+    Null-Objekt, Fassade
+  </description>
 
   <subsubsection|Entkopplungsmuster>
 
@@ -1713,6 +1731,31 @@
   <em|Formale Abnahme:> Bindende Erklärung der Annahme des Produkts durch den
   Auftraggeber
 
+  <subsection|Einführungsphase>
+
+  <\description>
+    <item*|Installation des Produkts>
+
+    <item*|Schulung von Benutzern und Betriebspersonal>
+
+    <item*|Inbetriebnahme>Übergang zwischen Installation und Betrieb
+
+    <\description>
+      <item*|Direkte Umstellung>Unmittelbarer Übergang altes
+      <math|\<rightarrow\>> neues System
+
+      <math|+> wenn alles glatt läuft ,a
+
+      <math|-> Hohes Risiko
+
+      <item*|Parallellauf>Daten werden in beiden Systemen verarbeitet, sodass
+      Ergebnisse verglichen werden können
+
+      <item*|Versuchslauf>Neues System arbeitet mit Daten aus vergangenen
+      Perioden oder Einführung des neuen Systems in einzelnen Stufen
+    </description>
+  </description>
+
   <section|Wartungs- und Pflegephase>
 
   <\description>
@@ -1831,10 +1874,12 @@
 
       <math|+> kompensiert fehlende Inspektionen/Reviews
 
-      <math|-> kein Vorteil gegenüber Einzelprogrammiererung + Inspektion
+      <math|-> kein Vorteil gegenüber Einzelprogrammiererung und Inspektion
       nachweisbar
 
       <math|-> Nachteil bei Kosten und Ressourcenauslastung
+
+      <math|-> Schwierige Fehler werden nicht schneller erkannt
 
       <item*|Testen bei XP>Programmierer schreiben automatische
       Komponententests [müssen bei jeder Integration zu 100% laufen, dienen
@@ -1870,7 +1915,7 @@
       ständig verfügbar\ 
     </description>
 
-    <em|Kent Beck:> Kosten für Änderungen haben bei XP eine obere Schranke
+    <em|Kent Beck:> Kosten für Änderungen haben bei XP eine obere Schranke.
   </description>
 </body>
 
@@ -1883,51 +1928,52 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.2|5>>
-    <associate|auto-11|<tuple|4.3|5>>
-    <associate|auto-12|<tuple|4.4|6>>
-    <associate|auto-13|<tuple|1|6>>
-    <associate|auto-14|<tuple|5|7>>
-    <associate|auto-15|<tuple|5.1|7>>
-    <associate|auto-16|<tuple|5.1.1|7>>
-    <associate|auto-17|<tuple|5.2|7>>
-    <associate|auto-18|<tuple|5.2.1|8>>
-    <associate|auto-19|<tuple|5.2.2|9>>
+    <associate|auto-10|<tuple|4.2|6>>
+    <associate|auto-11|<tuple|4.3|7>>
+    <associate|auto-12|<tuple|4.4|8>>
+    <associate|auto-13|<tuple|1|8>>
+    <associate|auto-14|<tuple|5|9>>
+    <associate|auto-15|<tuple|5.1|9>>
+    <associate|auto-16|<tuple|5.1.1|10>>
+    <associate|auto-17|<tuple|5.2|10>>
+    <associate|auto-18|<tuple|5.2.1|10>>
+    <associate|auto-19|<tuple|5.2.2|10>>
     <associate|auto-2|<tuple|2|1>>
-    <associate|auto-20|<tuple|5.3|9>>
+    <associate|auto-20|<tuple|5.3|10>>
     <associate|auto-21|<tuple|5.4|12>>
-    <associate|auto-22|<tuple|5.4.1|14>>
+    <associate|auto-22|<tuple|5.4.1|12>>
     <associate|auto-23|<tuple|5.4.2|16>>
-    <associate|auto-24|<tuple|5.4.3|17>>
-    <associate|auto-25|<tuple|5.4.4|18>>
-    <associate|auto-26|<tuple|5.4.5|18>>
-    <associate|auto-27|<tuple|6|19>>
-    <associate|auto-28|<tuple|6.1|19>>
-    <associate|auto-29|<tuple|6.2|20>>
+    <associate|auto-24|<tuple|5.4.3|18>>
+    <associate|auto-25|<tuple|5.4.4|20>>
+    <associate|auto-26|<tuple|5.4.5|20>>
+    <associate|auto-27|<tuple|6|22>>
+    <associate|auto-28|<tuple|6.1|22>>
+    <associate|auto-29|<tuple|6.2|23>>
     <associate|auto-3|<tuple|3|2>>
-    <associate|auto-30|<tuple|6.2.1|20>>
-    <associate|auto-31|<tuple|6.2.2|20>>
-    <associate|auto-32|<tuple|6.2.3|21>>
-    <associate|auto-33|<tuple|6.2.4|21>>
-    <associate|auto-34|<tuple|6.3|21>>
-    <associate|auto-35|<tuple|6.4|23>>
-    <associate|auto-36|<tuple|7|?>>
-    <associate|auto-37|<tuple|7.1|?>>
-    <associate|auto-38|<tuple|7.2|?>>
-    <associate|auto-39|<tuple|7.3|?>>
+    <associate|auto-30|<tuple|6.2.1|23>>
+    <associate|auto-31|<tuple|6.2.2|23>>
+    <associate|auto-32|<tuple|6.2.3|24>>
+    <associate|auto-33|<tuple|6.2.4|24>>
+    <associate|auto-34|<tuple|6.3|24>>
+    <associate|auto-35|<tuple|6.4|25>>
+    <associate|auto-36|<tuple|7|25>>
+    <associate|auto-37|<tuple|7.1|26>>
+    <associate|auto-38|<tuple|7.2|27>>
+    <associate|auto-39|<tuple|7.3|28>>
     <associate|auto-4|<tuple|3.1|3>>
-    <associate|auto-40|<tuple|7.4|?>>
-    <associate|auto-41|<tuple|7.4.1|?>>
-    <associate|auto-42|<tuple|7.5|?>>
-    <associate|auto-43|<tuple|7.6|?>>
-    <associate|auto-44|<tuple|7.7|?>>
-    <associate|auto-45|<tuple|8|?>>
-    <associate|auto-46|<tuple|9|?>>
+    <associate|auto-40|<tuple|7.4|28>>
+    <associate|auto-41|<tuple|7.4.1|28>>
+    <associate|auto-42|<tuple|7.5|29>>
+    <associate|auto-43|<tuple|7.6|30>>
+    <associate|auto-44|<tuple|7.7|30>>
+    <associate|auto-45|<tuple|7.8|30>>
+    <associate|auto-46|<tuple|8|31>>
+    <associate|auto-47|<tuple|9|?>>
     <associate|auto-5|<tuple|3.2|3>>
-    <associate|auto-6|<tuple|3.3|3>>
-    <associate|auto-7|<tuple|3.3.1|3>>
-    <associate|auto-8|<tuple|4|4>>
-    <associate|auto-9|<tuple|4.1|5>>
+    <associate|auto-6|<tuple|3.3|4>>
+    <associate|auto-7|<tuple|3.3.1|5>>
+    <associate|auto-8|<tuple|4|6>>
+    <associate|auto-9|<tuple|4.1|6>>
   </collection>
 </references>
 
